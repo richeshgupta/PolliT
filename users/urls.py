@@ -5,3 +5,4 @@ urlpatterns = [
     path('',home,name='home'),
     
 ]
+    

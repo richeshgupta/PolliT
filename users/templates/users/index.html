@@ -1,17 +1,34 @@
+
 {% extends 'users/template.html' %}
+{% load static %}
 {% block head %}
+<style>
+    #width-half
+    {
+        width:50%;
+    }
+</style>
 <title>Home : Polls</title>
 {% endblock head %}
 
 {% block content %}
-<div class="container mx-auto my-5">
+<div class="container mx-auto my-5 ">
     <div class="row-md-4 mx-auto">
+        <div class="col-md-4 float-left" style="margin-top: -4%;">
+            <img class="float-left" width="75%" src="{% static 'img/PolliT.png' %}">
+        </div>
         <div class="col-md-4 mx-auto px-auto">
             <h1 class="text-primary">Poll<font class="text-dark">iT</font></h1>
         </div>
         <div class="col-md-4 mx-auto">
             <p>If you want to conduct any type of poll, we'll take care of it, we'll provide architecture to do so you just have to copy the link and send the link to the stakeholders.</p>
         </div>
+        
     </div>
+    
 </div>
+<div class="row-md-4 float-left">
+    
+</div>
+
 {% endblock content %}
