@@ -4,6 +4,9 @@
 <title>Login : PolliT</title>
 {% endblock head %}
 {% block content %}
+{% if  user.is_authenticated %}
+    <h1 class="text text-info w-50 mx-auto mt-5">You are already logged in!</h1>
+{% else %}
 {% if form.errors %}
     {% for error in form.error %}
         {{error}}
@@ -21,11 +24,12 @@
                 
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-info">Login</button>   
+                <button type="submit" class="btn btn-info float-right">Login</button>   
+                <a href="{% url 'signup' %}" class="btn btn-success float-left">Signup</a> 
             </div>
         </form>    
     </div>
     
 </div>
-
+{% endif %}
 {% endblock content %}

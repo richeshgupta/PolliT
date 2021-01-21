@@ -1,0 +1,28 @@
+{% extends 'users/template.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+    <title>Signup : PolliT</title>
+{% endblock head %}
+{% block content %}
+{% if not user.is_authenticated %}
+<div class="row-md-6 mx-auto mt-5">
+    
+    <div class="card mx-auto w-50 px-5 py-5">
+        <h2 class="text text-success">Signup</h2>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class="btn btn-info" value="Signup" />
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="row-md-3 mx-auto w-25 mt-5">
+    <h3 class="text text-danger mx-auto">
+        You are already logged in!
+    </h3>
+</div>
+{% endif %}
+{% endblock content %}
