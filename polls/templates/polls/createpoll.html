@@ -1,0 +1,28 @@
+{% extends 'users/template.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>Login : PolliT</title>
+{% endblock head %}
+{% block content %}
+{% if form.errors %}
+    {% for error in form.error %}
+        {{error}}
+    {% endfor %}
+{% endif %}
+<div class="row-md-4 mx-auto mt-5">
+    <div class="card w-25 mx-auto">
+        <form method="post">
+            <div class="card-body">
+                
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <br />
+                
+                
+            </div>
+        </form>    
+    </div>
+    
+</div>
+
+{% endblock content %}
