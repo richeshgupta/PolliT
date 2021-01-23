@@ -10,8 +10,9 @@
     {% endfor %}
 {% endif %}
 <div class="row-md-4 mx-auto mt-5">
+    <form method="post">
     <div class="card w-25 mx-auto">
-        <form method="post">
+        
             <div class="card-body">
                 
                     {% csrf_token %}
@@ -20,8 +21,13 @@
                 
                 
             </div>
-        </form>    
+            <div class="card-footer">
+                <input type="submit" value="Post" />
+            </div>
+        
     </div>
+    
+</form>
     
 </div>
 

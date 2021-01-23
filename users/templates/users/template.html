@@ -29,7 +29,7 @@
           <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Create Polls</a>
+          <a class="nav-link" href="{% url 'createPoll' %}">Create Polls</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">My Polls</a>
@@ -39,9 +39,9 @@
     </div>
     <div class="float-right">
       {% if user.is_authenticated %}
-        <a class="navbar-item active"><a href="{% url 'logout' %}" class="btn btn-danger"><h5>Logout</h5></a></a>
+        <a class="navbar-item active"><a href="{% url 'logout' %}" class="btn btn-danger"><h6>Logout</h6></a></a>
       {% else %}
-        <a class="navbar-item active"><a href="{% url 'login' %}" class="btn btn-warning"><h5>Login</h5></a></a>
+        <a class="navbar-item active"><a href="{% url 'login' %}" class="btn btn-warning"><h6>Login</h6></a></a>
       {% endif %}
       </div>
   </nav>
