@@ -12,14 +12,12 @@
 <div class="row-md-4 mx-auto mt-5">
     <form method="post">
     <div class="card w-25 mx-auto">
-        
+            <h3 class="text text-info mx-auto mt-3">Create Poll</h3>
             <div class="card-body">
                 
                     {% csrf_token %}
                     {{form|crispy}}
                     <br />
-                
-                
             </div>
             <div class="card-footer">
                 <input type="submit" value="Post" />

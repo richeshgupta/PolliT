@@ -20,4 +20,4 @@ class Poll(models.Model):
     def get_absolute_url(self):
         return reverse('home')
     def __str__(self):
-        return self.name + " : " + self.text
+        return str(self.id)+" : "+self.name + " : " + self.text

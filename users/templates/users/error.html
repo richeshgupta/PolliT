@@ -1,0 +1,13 @@
+{% extends 'users/template.html' %}
+{% block head %}
+    <title>Error Occurred :(</title>
+{% endblock head %}
+{% block content %}
+<div class="container">
+    <h1 class="text text-danger my-5 mx-5">
+        
+        <br />
+        {{error}}
+    </h1>
+</div>
+{% endblock content %}

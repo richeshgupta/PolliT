@@ -4,5 +4,6 @@ from .views import *
 urlpatterns = [
     path('createpoll/',CreatePoll.as_view(),name='createPoll'),
     path('mypolls/',MyPolls,name='mypolls'),
+    path('poll/<int:pk>/',SpecificPoll,name='poll'),
 ]
     

@@ -19,3 +19,17 @@ class CreatePoll(LoginRequiredMixin,CreateView):
 def MyPolls(request):
     objs = Poll.objects.all().filter(author=request.user)
     return render(request,"polls/mypolls.html",{'objs':objs})
+
+def ErrorPage(request,error):
+    if len(error)<1:
+        error = "No Valid Thrown error"
+    return render(request,"users/error.html",{'error':error})
+
+def SpecificPoll(request,pk):
+    objs = Poll.objects.filter(id=pk)
+    if not objs.count():
+        print("Error")
+        return ErrorPage(request,"No Poll found!")
+    else:
+        print(objs)
+        return render(request,"polls/poll.html",{'objs':objs.first()})
