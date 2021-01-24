@@ -3,18 +3,7 @@ from .forms import CreatePollForm
 from .models import Poll
 from django.contrib.auth.mixins	import LoginRequiredMixin
 from django.views.generic import CreateView
-
-# Create your views here.
-# def CreatePoll(request):
-#     if request.method=='POST':
-#         form=CreatePollForm(request.POST)
-#         if form.is_valid():
-            
-#             form.save()
-#     else:
-#         form=CreatePollForm()
-#     return render(request,"polls/createpoll.html",{'form':form})
-
+from django.contrib.auth.decorators import login_required
 
 class CreatePoll(LoginRequiredMixin,CreateView):
     model = Poll
@@ -25,4 +14,8 @@ class CreatePoll(LoginRequiredMixin,CreateView):
         # Always add .instance or your half hour is fucked
         CreatePollForm.instance.author = self.request.user
         return super().form_valid(CreatePollForm)
-        
+
+@login_required        
+def MyPolls(request):
+    objs = Poll.objects.all().filter(author=request.user)
+    return render(request,"polls/mypolls.html",{'objs':objs})

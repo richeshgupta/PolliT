@@ -1,0 +1,37 @@
+{% extends 'users/template.html' %}
+{% block head %}
+    <title>
+        My Polls : PolliT
+    </title>
+{% endblock head %}
+{% block content %}
+    <div class="row-md-6 mx-auto w-50">
+        <div class="col-md-4 mt-5 ">
+            <h2 class="text text-info text-center">
+                My Polls
+            </h2>
+        </div>
+       
+    </div>
+    <div class="row-md-12 mx-auto">
+        
+        <div class="col-md-12 mx-auto my-5 ">
+            {% for i in objs %}
+                <div class="d-inline-block card w-25 my-3 mx-3">
+                    <div class="card-body">
+                        <h4>{{i.name}}</h4>
+                        <h5 class="font-weight-light">{{i.author}}</h5>
+                        <h6 class="font-weight-light">{{i.date}}</h6>
+                    
+                    </div>
+                    <div class="card-footer">
+                        {{i.text}}
+                    </div>
+                    
+
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+{% endblock content %}
