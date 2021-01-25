@@ -8,7 +8,7 @@ from django.urls import reverse
 class Poll(models.Model):
     name=models.CharField(max_length=30,verbose_name='Poll Name')
     author = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Author')
-    text = RichTextField(blank=True,null=True,max_length=300,verbose_name='Description')
+    text = RichTextField(blank=True,null=True,max_length=3000,verbose_name='Description')
     date = models.DateTimeField(default=timezone.now())
     option1 = models.TextField(max_length=500,verbose_name='Option 1')
     option2 = models.TextField(max_length=500,verbose_name='Option 2')
