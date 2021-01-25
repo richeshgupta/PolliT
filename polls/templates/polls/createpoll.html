@@ -1,7 +1,7 @@
 {% extends 'users/template.html' %}
 {% load crispy_forms_tags %}
 {% block head %}
-<title>Login : PolliT</title>
+<title>CreatePoll : PolliT</title>
 {% endblock head %}
 {% block content %}
 {% if form.errors %}
@@ -9,24 +9,25 @@
         {{error}}
     {% endfor %}
 {% endif %}
-<div class="row-md-4 mx-auto mt-5">
-    <form method="post">
-    <div class="card w-25 mx-auto">
-            <h3 class="text text-info mx-auto mt-3">Create Poll</h3>
-            <div class="card-body">
-                
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <br />
-            </div>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h1 class="mt-2">Create Poll</h1>
+        <hr class="mt-0 mb-4">
+        <form method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
             <div class="card-footer">
                 <input type="submit" value="Post" />
             </div>
-        
+        </form>
+      </div>
     </div>
+  </div>
+
+
     
-</form>
-    
-</div>
 
 {% endblock content %}
