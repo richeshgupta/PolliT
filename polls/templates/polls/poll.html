@@ -6,6 +6,35 @@
 {% endblock head %}
 
 {% block content %}
-<h1>Hello</h1>
-<h1 class="text text-info">{{objs}}</h1>
+<div class="jumbotron jumbotron-fluid text text-center">
+    <h1 class="text text-info">{{objs.name}}</h1>
+</div>
+
+<div class="row-md-6 mx-auto my-3 mb-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                {% if not objs.is_anon %}
+                <h5 class="font-weight-light">{{objs.author}}</h5>
+                {% endif %}
+                <h6 class="font-weight-light">{{objs.date}}</h6>
+                {{objs.text|safe}}
+            </div>
+            <div class="card-footer mb-3">
+                {{objs.option1}}
+            </div>
+            <div class="card-footer mb-3">
+                {{objs.option2}}
+            </div>
+            <div class="card-footer mb-3">
+                {{objs.option3}}
+            </div>
+            <div class="card-footer mb-3">
+                {{objs.option4}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock content %}

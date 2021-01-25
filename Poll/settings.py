@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'polls',
-    'ckeditor'
+    'ckeditor',
     
 ]
 

@@ -19,13 +19,13 @@
             {% for i in objs %}
                 <div class="d-inline-block card w-25 my-3 mx-3">
                     <div class="card-body">
-                        <h4>{{i.name}}</h4>
+                        <h4><a href="{% url 'poll' i.id %}">{{i.name}}</h4></a>
                         <h5 class="font-weight-light">{{i.author}}</h5>
                         <h6 class="font-weight-light">{{i.date}}</h6>
                     
                     </div>
                     <div class="card-footer">
-                        {{i.text}}
+                        {{i.text|safe|truncatewords_html:5}}
                     </div>
                     
 
