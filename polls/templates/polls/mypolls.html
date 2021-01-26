@@ -16,21 +16,27 @@
     <div class="row-md-12 mx-auto">
         
         <div class="col-md-12 mx-auto my-5 ">
-            {% for i in objs %}
-                <div class="d-inline-block card w-25 my-3 mx-3">
-                    <div class="card-body">
-                        <h4><a href="{% url 'poll' i.id %}">{{i.name}}</h4></a>
-                        <h5 class="font-weight-light">{{i.author}}</h5>
-                        <h6 class="font-weight-light">{{i.date}}</h6>
-                    
-                    </div>
-                    <div class="card-footer">
-                        {{i.text|safe|truncatewords_html:2}}
-                    </div>
-                    
+            {% if objs %}
+                {% for i in objs %}
+                    <div class="d-inline-block card w-25 my-3 mx-3">
+                        <div class="card-body">
+                            <h4><a href="{% url 'poll' i.id %}">{{i.name}}</h4></a>
+                            <h5 class="font-weight-light">{{i.author}}</h5>
+                            <h6 class="font-weight-light">{{i.date}}</h6>
+                        
+                        </div>
+                        <div class="card-footer">
+                            {{i.text|safe|truncatewords_html:2}}
+                        </div>
+                        
 
-                </div>
-            {% endfor %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <h2 class="text text-info">
+                        You have no authored polls.
+                    </h2>
+            {% endif %}
         </div>
         
     </div>

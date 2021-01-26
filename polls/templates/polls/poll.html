@@ -1,8 +1,13 @@
 {% extends 'users/template.html' %}
 {% block head %}
    <title>
-       Hi
+       {% if objs %}
+            {{objs.name}}
+        {% else %}
+            Not found!
+        {% endif %}
    </title>
+   
 {% endblock head %}
 
 {% block content %}
@@ -13,6 +18,12 @@
 <div class="row-md-6 mx-auto my-3 mb-5">
     <div class="col-md-6 mx-auto">
         <div class="card">
+            <div class="d-inline-block col-md-6 mx-3" >
+                {% if user == objs.author %}
+                    <a class="btn btn-warning mx-3 my-2 float-right" href="{% url 'updatepoll' objs.id %}">Edit Poll</a>
+                    <a class="btn btn-danger mx-3 my-2 float-right" href="{% url 'deletepoll' objs.id %}">Delete Poll</a>
+                {% endif %}
+            </div>
             <div class="card-body">
                 {% if not objs.is_anon %}
                 <h5 class="font-weight-light">{{objs.author}}</h5>

@@ -1,0 +1,33 @@
+{% extends 'users/template.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>CreatePoll : PolliT</title>
+{% endblock head %}
+{% block content %}
+{% if form.errors %}
+    {% for error in form.error %}
+        {{error}}
+    {% endfor %}
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h1 class="mt-2">Create Poll</h1>
+        <hr class="mt-0 mb-4">
+        <form method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <div class="card-footer">
+                <input type="submit" value="Edit" />
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+{% endblock content %}

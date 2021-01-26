@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .forms import CreatePollForm
 from .models import Poll
-from django.contrib.auth.mixins	import LoginRequiredMixin
-from django.views.generic import CreateView
+from django.contrib.auth.mixins	import LoginRequiredMixin,UserPassesTestMixin
+from django.views.generic import CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required
 
 class CreatePoll(LoginRequiredMixin,CreateView):
@@ -14,6 +14,7 @@ class CreatePoll(LoginRequiredMixin,CreateView):
         # Always add .instance or your half hour is fucked
         CreatePollForm.instance.author = self.request.user
         return super().form_valid(CreatePollForm)
+
 
 @login_required        
 def MyPolls(request):
@@ -28,8 +29,30 @@ def ErrorPage(request,error):
 def SpecificPoll(request,pk):
     objs = Poll.objects.filter(id=pk)
     if not objs.count():
-        print("Error")
         return ErrorPage(request,"No Poll found!")
     else:
-        print(objs)
         return render(request,"polls/poll.html",{'objs':objs.first()})
+
+    
+class UpdatePoll(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+	model = Poll
+	fields = ["name",'text','option1','option2','option3','option4','is_anon']
+	context_object_name = 'form'
+	def form_valid(self,CreatePollForm):
+		CreatePollForm.instance.author = self.request.user
+		return super().form_valid(CreatePollForm)
+	def test_func(self):
+		test_case = self.get_object()
+		if self.request.user == test_case.author:
+			return True
+		else:
+			return False
+class DeletePoll(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+	model = Poll
+	success_url = '/'
+	def test_func(self):
+		test_case = self.get_object()
+		if self.request.user == test_case.author:
+			return True
+		else:
+			return False

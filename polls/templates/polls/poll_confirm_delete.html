@@ -1,0 +1,38 @@
+{% extends 'users/template.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>Delete Poll : PolliT</title>
+{% endblock head %}
+{% block content %}
+{% if form.errors %}
+    {% for error in form.error %}
+        {{error}}
+    {% endfor %}
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h1 class="mt-2">Delete Poll</h1>
+        <hr class="mt-0 mb-4">
+        <h3 class="text text-danger">
+            Are you sure to delete this poll?
+        </h3>
+        <form method="post" id="delete-poll">
+            {% csrf_token %}
+            
+            {{form|crispy}}
+            <br>
+            <div class="card-footer">
+                
+                <a href="javascript:{}" class='btn btn-danger' onclick="document.getElementById('delete-poll').submit();">Yes</a>
+                <a href="{% url 'mypolls' %}">No</a>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+{% endblock content %}
