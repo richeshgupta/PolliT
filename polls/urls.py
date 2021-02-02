@@ -7,6 +7,7 @@ urlpatterns = [
     path('poll/<int:pk>/',SpecificPoll,name='poll'),
     path('update-poll/<int:pk>/',UpdatePoll.as_view(),name='updatepoll'),
     path('delete-poll/<int:pk>/',DeletePoll.as_view(),name='deletepoll'),
+    path('countpoll/',CountPoll)
 
 ]
     
