@@ -4,7 +4,9 @@ from .models import Poll
 from django.contrib.auth.mixins	import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required
-
+from django.db import connection
+from django.http import HttpResponse
+import json
 class CreatePoll(LoginRequiredMixin,CreateView):
     model = Poll
     template_name='polls/createpoll.html'
@@ -56,3 +58,26 @@ class DeletePoll(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 			return True
 		else:
 			return False
+
+@login_required 
+def CountPoll(request):
+    if request.method=='POST':
+        pollId=request.POST['pollId']
+        count=request.POST['count']
+        cursor = connection.cursor()
+        cursor.execute("select * FROM polls_poll where id=%s ",[pollId])
+        if(count=='1'):
+            count=cursor.fetchone()[-6]+1
+            cursor.execute("update polls_poll set count1=%s where id=%s ",[count,pollId])
+        elif(count=='2'):
+            count=cursor.fetchone()[-5]+1
+            cursor.execute("update polls_poll set count2=%s where id=%s ",[count,pollId])
+        elif(count=='3'):
+            count=cursor.fetchone()[-4]+1
+            cursor.execute("update polls_poll set count3=%s where id=%s ",[count,pollId])
+        else:
+            count=cursor.fetchone()[-3]+1
+            cursor.execute("update polls_poll set count4=%s where id=%s ",[count,pollId])
+        a='done'
+        return HttpResponse(json.dumps({'a': a}), content_type="application/json")
+

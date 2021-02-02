@@ -4,6 +4,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from django.urls import reverse
 
+
 # Create your models here.
 class Poll(models.Model):
     name=models.CharField(max_length=30,verbose_name='Poll Name')
