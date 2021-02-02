@@ -4,7 +4,7 @@
     {% block head %}
 
     {% endblock head %}    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <style>
   #nav-text:hover
@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- Nav bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<header class="navbar navbar-expand-lg navbar-dark bg-info">
   
     <a class="navbar-brand" href="{% url 'home' %}" id="nav-text">Poll<font class="text-dark">iT</font></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,17 +34,30 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'mypolls' %}">My Polls</a>
         </li>
-        
       </ul>
     </div>
-    <div class="float-right">
+
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       {% if user.is_authenticated %}
+        <li class="nav-item" style="margin-right:30px;">Welcome, <b>{{request.user.username}} </b></li>
+        <li class="nav-item">
+          <a class="navbar-item active"><a href="{% url 'logout' %}" class="btn btn-danger"><h6>Logout</h6></a></a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="navbar-item active"><a href="{% url 'login' %}" class="btn btn-warning"><h6>Login</h6></a></a>
+        </li>
+      {% endif %}
+    </ul>
+    <!-- <div class="float-right">
+      {% if user.is_authenticated %}
+        <p>Welcome, {{request.user.username}}</p>
         <a class="navbar-item active"><a href="{% url 'logout' %}" class="btn btn-danger"><h6>Logout</h6></a></a>
       {% else %}
         <a class="navbar-item active"><a href="{% url 'login' %}" class="btn btn-warning"><h6>Login</h6></a></a>
       {% endif %}
-      </div>
-  </nav>
+    </div> -->
+</header>
 
   <!--  -->
 
